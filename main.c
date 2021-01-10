@@ -7,7 +7,7 @@ struct movie
 {
   char *title;
   int year;
-  char *str;
+  // char *languages[MAX_NUMBER_OF_LANGUAGES];
   float rating;
   struct movie *next;
 };
