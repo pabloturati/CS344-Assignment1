@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-extern int MAX_NUMBER_OF_LANGUAGES;
+char *USER_OPTIONS;
+char *OPTION_PROMPT;
+char *INVALID_USER_INPUT_MSG;
+char *GOODBYE_MSG;
 
 #endif

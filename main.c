@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "constants.h"
+#define TRUE 1
 
 struct movie
 {
@@ -13,8 +14,8 @@ struct movie
 };
 
 struct movie *createMovieList(char *);
-struct movie *createMovie(char *);
-void printList(struct movie *);
+struct movie *createMovieNode(char *);
+size_t getListSize(struct movie *);
 
 struct movie *createMovieList(char *filePath)
 {
@@ -34,7 +35,7 @@ struct movie *createMovieList(char *filePath)
   // Parse each line to linkedlist objects
   while ((nread = getline(&currLine, &len, movieFile)) != -1)
   {
-    struct movie *newNode = createMovie(currLine);
+    struct movie *newNode = createMovieNode(currLine);
 
     if (head == NULL)
     {
@@ -51,7 +52,7 @@ struct movie *createMovieList(char *filePath)
   return head;
 }
 
-struct movie *createMovie(char *currLine)
+struct movie *createMovieNode(char *currLine)
 {
   struct movie *currMovie = malloc(sizeof(struct movie));
 
@@ -69,7 +70,6 @@ struct movie *createMovie(char *currLine)
 
   // Languages
   token = strtok_r(NULL, ",", &rest);
-  printf("%s\n", token);
   currMovie->languages = calloc(strlen(token) + 1, sizeof(char));
   strcpy(currMovie->languages, token);
 
@@ -82,28 +82,60 @@ struct movie *createMovie(char *currLine)
   return currMovie;
 }
 
-void printList(struct movie *list)
+size_t getListSize(struct movie *list)
 {
+  size_t listLength = 0;
   printf("Printing List\n");
   while (list != NULL)
   {
-    printf("%s\t", list->title);
-    printf("%d\t", list->year);
-    printf("%s\t", list->languages);
-    printf("%.1f\n", list->rating);
+    // printf("%s\t", list->title);
+    // printf("%d\t", list->year);
+    // printf("%s\t", list->languages);
+    // printf("%.1f\n", list->rating);
     list = list->next;
+    ++listLength;
   }
+  return listLength;
 }
 
 int main(int argc, char *argv[])
 {
   if (argc < 2)
   {
-    printf("Missing file to process");
+    printf("Missing file to read");
     return EXIT_FAILURE;
   }
 
   struct movie *movieList = createMovieList(argv[1]);
-  printList(movieList);
-  return EXIT_SUCCESS;
+  size_t size = getListSize(movieList);
+
+  printf("Processed file %s and parsed data for %zu movies\n\n", argv[1], size);
+
+  int option;
+  do
+  {
+    puts(USER_OPTIONS);
+    printf("%s", OPTION_PROMPT);
+    scanf("%d", &option);
+
+    switch (option)
+    {
+    case 1:
+      printf("is one");
+      break;
+    case 2:
+      printf("is two");
+      break;
+    case 3:
+      printf("is three");
+      break;
+    case 4:
+      printf("%s", GOODBYE_MSG);
+      return EXIT_SUCCESS;
+      break;
+    default:
+      puts(INVALID_USER_INPUT_MSG);
+    }
+  } while (TRUE);
+  return EXIT_FAILURE;
 }
