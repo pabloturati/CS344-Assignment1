@@ -6,9 +6,9 @@
 struct movie
 {
   char *title;
-  short year;
+  unsigned short year;
   // char *languages[MAX_NUMBER_OF_LANGUAGES];
-  // float rating;
+  float rating;
   struct movie *next;
 };
 
@@ -27,10 +27,14 @@ struct movie *createMovieList(char *filePath)
   struct movie *head = NULL;
   struct movie *tail = NULL;
 
+  // Read and ignore first line (header line)
+  getline(&currLine, &len, movieFile);
+
   // Parse each line to linkedlist objects
   while ((nread = getline(&currLine, &len, movieFile)) != -1)
   {
     struct movie *newNode = createMovie(currLine);
+
     if (head == NULL)
     {
       head = newNode;
@@ -62,6 +66,15 @@ struct movie *createMovie(char *currLine)
   token = strtok_r(NULL, ",", &rest);
   currMovie->year = atoi(token);
 
+  // Languages
+  token = strtok_r(NULL, ",", &rest);
+  // printf("%s", token);
+  // currMovie->languages = atoi(token);
+
+  // Rating
+  token = strtok_r(NULL, ",", &rest);
+  currMovie->rating = strtof(token, NULL);
+
   // Set next movie ptr
   currMovie->next = NULL;
 
@@ -70,11 +83,12 @@ struct movie *createMovie(char *currLine)
 
 void printList(struct movie *list)
 {
-  printf("Printing");
+  printf("Printing\n");
   while (list != NULL)
   {
-    printf("Title:  %s", list->title);
-    printf("Year:  %d", list->year);
+    printf("%s\t", list->title);
+    printf("%d\t", list->year);
+    printf("%.1f\n", list->rating);
     list = list->next;
   }
 }
