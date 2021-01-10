@@ -1,0 +1,1 @@
+int MAX_NUMBER_OF_LANGUAGES = 5;
