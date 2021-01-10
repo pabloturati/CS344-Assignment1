@@ -8,14 +8,14 @@ int main(int argc, char *argv[])
 {
   if (argc < 2)
   {
-    printf("Missing file to read");
+    printf("%S", MISSING_FILE_PARAM_MSG);
     return EXIT_FAILURE;
   }
 
   struct movie *movieList = createMovieList(argv[1]);
   size_t size = getListSize(movieList);
 
-  printf("Processed file %s and parsed data for %zu movies\n\n", argv[1], size);
+  printf(LIST_CREATION_SUCCESS, argv[1], size);
 
   int option;
   do
