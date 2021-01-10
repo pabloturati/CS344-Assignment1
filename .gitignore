@@ -59,6 +59,3 @@ movies_sample_1.csv
 
 # Compiled files
 movies
-lib_movies.a
-constants.o
-movieList.o

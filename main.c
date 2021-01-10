@@ -4,6 +4,34 @@
 #include "constants.h"
 #include "movieList.h"
 
+void filteByYear(struct movie *head)
+{
+  unsigned short year;
+  printf("%s", INPUT_YEAR_MSG);
+  scanf("%hu", &year);
+  printf(SELECTED_YEAR_MSG, year);
+
+  size_t count = 0;
+  struct movie *curr = head;
+  while (curr != NULL)
+  {
+    if (curr->year == year)
+    {
+      printf("%s\n", curr->title);
+      ++count;
+    }
+    curr = curr->next;
+  }
+  if (count == 0)
+  {
+    printf(NO_YEAR_RESULT_MSG, year);
+  }
+  else
+  {
+    printf(TOTAL_RECORDS_FOUND_IN_YEAR, count, year);
+  }
+}
+
 int main(int argc, char *argv[])
 {
   if (argc < 2)
@@ -17,6 +45,7 @@ int main(int argc, char *argv[])
 
   printf(LIST_CREATION_SUCCESS, argv[1], size);
 
+  // User inteface handler
   int option;
   do
   {
@@ -27,7 +56,7 @@ int main(int argc, char *argv[])
     switch (option)
     {
     case 1:
-      printf("is one");
+      filteByYear(movieList);
       break;
     case 2:
       printf("is two");
@@ -43,5 +72,4 @@ int main(int argc, char *argv[])
       puts(INVALID_USER_INPUT_MSG);
     }
   } while (TRUE);
-  return EXIT_FAILURE;
 }

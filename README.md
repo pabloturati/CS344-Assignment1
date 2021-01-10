@@ -27,7 +27,7 @@ This will generate a `movies` exectable file as output.
 
 ### Option 2.  Individual commands
 
-Refer to run.sh for command list.
+Refer to `run.sh` for command list.
 
 ## Run procedure
 
