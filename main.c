@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
   if (argc < 2)
   {
-    printf("%S", MISSING_FILE_PARAM_MSG);
+    printf("%s", MISSING_FILE_PARAM_MSG);
     return EXIT_FAILURE;
   }
 

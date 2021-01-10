@@ -61,3 +61,4 @@ movies_sample_1.csv
 movies
 lib_movies.a
 constants.o
+movieList.o
