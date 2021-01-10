@@ -7,13 +7,14 @@ struct movie
 {
   char *title;
   unsigned short year;
-  // char *languages[MAX_NUMBER_OF_LANGUAGES];
+  char *languages;
   float rating;
   struct movie *next;
 };
 
 struct movie *createMovieList(char *);
 struct movie *createMovie(char *);
+void printList(struct movie *);
 
 struct movie *createMovieList(char *filePath)
 {
@@ -54,7 +55,7 @@ struct movie *createMovie(char *currLine)
 {
   struct movie *currMovie = malloc(sizeof(struct movie));
 
-  // For use with strtok_r
+  // Pointer to curr strtok_r position
   char *rest;
 
   // Title
@@ -68,8 +69,9 @@ struct movie *createMovie(char *currLine)
 
   // Languages
   token = strtok_r(NULL, ",", &rest);
-  // printf("%s", token);
-  // currMovie->languages = atoi(token);
+  printf("%s\n", token);
+  currMovie->languages = calloc(strlen(token) + 1, sizeof(char));
+  strcpy(currMovie->languages, token);
 
   // Rating
   token = strtok_r(NULL, ",", &rest);
@@ -77,17 +79,17 @@ struct movie *createMovie(char *currLine)
 
   // Set next movie ptr
   currMovie->next = NULL;
-
   return currMovie;
 }
 
 void printList(struct movie *list)
 {
-  printf("Printing\n");
+  printf("Printing List\n");
   while (list != NULL)
   {
     printf("%s\t", list->title);
     printf("%d\t", list->year);
+    printf("%s\t", list->languages);
     printf("%.1f\n", list->rating);
     list = list->next;
   }
