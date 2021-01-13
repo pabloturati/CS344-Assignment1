@@ -69,16 +69,6 @@ struct movie *createMovieNode(char *currLine)
   return currMovie;
 }
 
-int arrayContainsValue(int *arr, int arrSize, int val)
-{
-  for (size_t i = 0; i < arrSize; i++)
-  {
-    if (arr[i] == val)
-      return 1;
-  }
-  return 0;
-}
-
 int *createUniqueMovieYearsArr(struct movie *head, int *size)
 {
   int *uniqueYearArr = (int *)calloc(MOVIE_YEARS, sizeof(int));

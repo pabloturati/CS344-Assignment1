@@ -12,3 +12,13 @@ char *INPUT_YEAR_MSG = "Enter the year for which you want to see movies: ";
 char *NO_YEAR_RESULT_MSG = "No data about movies released in the year %hu\n\n";
 char *SELECTED_YEAR_MSG = "You selected %hu\n\n";
 char *TOTAL_RECORDS_FOUND_IN_YEAR = "\n%hu total records found in year %hu\n\n";
+
+int arrayContainsValue(int *arr, int arrSize, int val)
+{
+  for (int i = 0; i < arrSize; i++)
+  {
+    if (arr[i] == val)
+      return 1;
+  }
+  return 0;
+}

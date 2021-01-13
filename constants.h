@@ -13,5 +13,6 @@ char *INPUT_YEAR_MSG;
 char *NO_YEAR_RESULT_MSG;
 char *SELECTED_YEAR_MSG;
 char *TOTAL_RECORDS_FOUND_IN_YEAR;
+int arrayContainsValue(int *, int, int);
 
 #endif
