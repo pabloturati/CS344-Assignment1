@@ -111,6 +111,30 @@ void printMoviesWithHighestRatingsPerYear(struct movie *head, int *uniqueYears, 
   printf("\n");
 }
 
+void printMoviesOfCertainLanguage(struct movie *head, char *language)
+{
+  struct movie *curr = head;
+  int count = 0;
+  while (curr)
+  {
+    char *ptrToStrMatch = strstr(curr->languages, language);
+    if (ptrToStrMatch != NULL)
+    {
+      printf("%d %s\n", curr->year, curr->title);
+      ++count;
+    }
+    curr = curr->next;
+  }
+  if (count == 0)
+  {
+    printf(LANGUAGE_EMPTY_RECORDS_MSG, language);
+  }
+  else
+  {
+    printf(LANGUAGE_RECORDS_MSG, count, language);
+  }
+}
+
 void filteMoviesByYear(struct movie *head)
 {
   unsigned short year;

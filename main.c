@@ -20,31 +20,34 @@ int main(int argc, char *argv[])
   int yearSize = 0;
   int *uniqueMovieYears = createUniqueMovieYearsArr(movieList, &yearSize);
 
-  // User inteface handler
-  int option;
-  do
-  {
-    puts(USER_OPTIONS);
-    printf("%s", OPTION_PROMPT);
-    scanf("%d", &option);
+  char *language = requestLanguageFromUser();
+  printMoviesOfCertainLanguage(movieList, language);
 
-    switch (option)
-    {
-    case 1:
-      filteMoviesByYear(movieList);
-      break;
-    case 2:
-      printMoviesWithHighestRatingsPerYear(movieList, uniqueMovieYears, yearSize);
-      break;
-    case 3:
-      printf("is three");
-      break;
-    case 4:
-      printf("%s", GOODBYE_MSG);
-      return EXIT_SUCCESS;
-      break;
-    default:
-      puts(INVALID_USER_INPUT_MSG);
-    }
-  } while (TRUE);
+  // User inteface handler
+  // int option;
+  // do
+  // {
+  //   puts(USER_OPTIONS);
+  //   printf("%s", OPTION_PROMPT);
+  //   scanf("%d", &option);
+
+  //   switch (option)
+  //   {
+  //   case 1:
+  //     filteMoviesByYear(movieList);
+  //     break;
+  //   case 2:
+  //     printMoviesWithHighestRatingsPerYear(movieList, uniqueMovieYears, yearSize);
+  //     break;
+  //   case 3:
+  //     requestLanguageFromUser();
+  //     break;
+  //   case 4:
+  //     printf("%s", GOODBYE_MSG);
+  //     return EXIT_SUCCESS;
+  //     break;
+  //   default:
+  //     puts(INVALID_USER_INPUT_MSG);
+  //   }
+  // } while (TRUE);
 }

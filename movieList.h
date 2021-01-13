@@ -16,5 +16,6 @@ size_t getListSize(struct movie *);
 int *createUniqueMovieYearsArr(struct movie *, int *);
 void printMoviesWithHighestRatingsPerYear(struct movie *, int *, int);
 void filteMoviesByYear(struct movie *);
+void printMoviesOfCertainLanguage(struct movie *, char *language);
 
 #endif
