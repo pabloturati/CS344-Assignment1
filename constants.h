@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #define TRUE 1
+#define MOVIE_YEARS 122
 
 char *MISSING_FILE_PARAM_MSG;
 char *LIST_CREATION_SUCCESS;

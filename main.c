@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
 
   printf(LIST_CREATION_SUCCESS, argv[1], size);
 
+  int yearSize = 0;
+  int *uniqueMovieYears = createUniqueMovieYearsArr(movieList, &yearSize);
+
   // User inteface handler
   int option;
   do
@@ -59,7 +62,7 @@ int main(int argc, char *argv[])
       filteByYear(movieList);
       break;
     case 2:
-      printf("is two");
+      printMoviesWithHighestRatingsPerYear(movieList, uniqueMovieYears, yearSize);
       break;
     case 3:
       printf("is three");

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "movieList.h"
+#include "constants.h"
 
 struct movie *createMovieList(char *filePath)
 {
@@ -66,6 +67,58 @@ struct movie *createMovieNode(char *currLine)
   // Set next movie ptr
   currMovie->next = NULL;
   return currMovie;
+}
+
+int arrayContainsValue(int *arr, int arrSize, int val)
+{
+  for (size_t i = 0; i < arrSize; i++)
+  {
+    if (arr[i] == val)
+      return 1;
+  }
+  return 0;
+}
+
+int *createUniqueMovieYearsArr(struct movie *head, int *size)
+{
+  int *uniqueYearArr = (int *)calloc(MOVIE_YEARS, sizeof(int));
+  struct movie *curr = head;
+  while (curr != NULL)
+  {
+    if (!arrayContainsValue(uniqueYearArr, *size, curr->year))
+    {
+      uniqueYearArr[*size] = curr->year;
+      ++(*size);
+    }
+    curr = curr->next;
+  }
+  return uniqueYearArr;
+}
+
+void printMoviesWithHighestRatingsPerYear(struct movie *head, int *uniqueYears, int arrSize)
+{
+  for (int i = 0; i < arrSize; i++)
+  {
+    struct movie *curr = head;
+    struct movie *highest = NULL;
+    while (curr)
+    {
+      if (curr->year == uniqueYears[i])
+      {
+        if (highest == NULL)
+        {
+          highest = curr;
+        }
+        else if (curr->rating > highest->rating)
+        {
+          highest = curr;
+        }
+      }
+      curr = curr->next;
+    }
+    printf("%d %.1f %s\n", uniqueYears[i], highest->rating, highest->title);
+  }
+  printf("\n");
 }
 
 size_t getListSize(struct movie *list)

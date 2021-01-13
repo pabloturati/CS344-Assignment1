@@ -4,7 +4,7 @@
 struct movie
 {
   char *title;
-  unsigned short year;
+  int year;
   char *languages;
   float rating;
   struct movie *next;
@@ -13,5 +13,7 @@ struct movie
 struct movie *createMovieList(char *);
 struct movie *createMovieNode(char *);
 size_t getListSize(struct movie *);
+int *createUniqueMovieYearsArr(struct movie *, int *);
+void printMoviesWithHighestRatingsPerYear(struct movie *, int *, int);
 
 #endif
