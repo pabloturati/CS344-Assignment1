@@ -121,6 +121,34 @@ void printMoviesWithHighestRatingsPerYear(struct movie *head, int *uniqueYears, 
   printf("\n");
 }
 
+void filteMoviesByYear(struct movie *head)
+{
+  unsigned short year;
+  printf("%s", INPUT_YEAR_MSG);
+  scanf("%hu", &year);
+  printf(SELECTED_YEAR_MSG, year);
+
+  size_t count = 0;
+  struct movie *curr = head;
+  while (curr != NULL)
+  {
+    if (curr->year == year)
+    {
+      printf("%s\n", curr->title);
+      ++count;
+    }
+    curr = curr->next;
+  }
+  if (count == 0)
+  {
+    printf(NO_YEAR_RESULT_MSG, year);
+  }
+  else
+  {
+    printf(TOTAL_RECORDS_FOUND_IN_YEAR, count, year);
+  }
+}
+
 size_t getListSize(struct movie *list)
 {
   size_t listLength = 0;
