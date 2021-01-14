@@ -41,6 +41,8 @@ int main(int argc, char *argv[])
       printMoviesOfCertainLanguage(movieList, language);
       break;
     case 4:
+      free(uniqueMovieYears);
+      freeMovieList(movieList);
       printf("%s", GOODBYE_MSG);
       return EXIT_SUCCESS;
       break;

@@ -163,6 +163,19 @@ void filteMoviesByYear(struct movie *head)
   }
 }
 
+void freeMovieList(struct movie *list)
+{
+  struct movie *curr = list;
+  while (curr != NULL)
+  {
+    struct movie *next = curr->next;
+    free(curr->title);
+    free(curr->languages);
+    free(curr);
+    curr = next;
+  }
+}
+
 size_t getListSize(struct movie *list)
 {
   size_t listLength = 0;

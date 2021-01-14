@@ -16,7 +16,5 @@ gcc --std=c99 -o movies main.c lib_movies.a
 # Removes temporary files
 rm -f constants.o movieList.o lib_movies.a
 
-# REMOVE THIS LINE: gcc --std=c99 -o test main.c constants.c
-
 # Test 1 Happy path
 ./movies movies_sample_1.csv

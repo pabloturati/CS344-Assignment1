@@ -9,7 +9,7 @@ char *LIST_CREATION_SUCCESS = "Processed file %s and parsed data for %zu movies\
 char *USER_OPTIONS = "1. Show movies released in the specified year.\n2. Show highest rated movie for each year.\n3. Show the title and year of release of all movies in a specific language.\n4. Exit from the program.\n";
 char *OPTION_PROMPT = "Enter a choice from 1 to 4: ";
 char *INVALID_USER_INPUT_MSG = "\nYou entered an incorrect choice. Try again.\n";
-char *GOODBYE_MSG = "Thank you, good bye!\n";
+char *GOODBYE_MSG = "Freeing allocated memory done, good bye!\n";
 
 // Year inputs
 char *INPUT_YEAR_MSG = "Enter the year for which you want to see movies: ";
