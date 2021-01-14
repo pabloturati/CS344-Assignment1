@@ -13,6 +13,8 @@ Application that reads data from a CSV file, provides user with the following fu
 
 ## Compile instructions
 
+This project uses GNU99 compile standards for building the executable.
+
 ### Option 1.  Using compile script
 
 This application includes a bash script to build and deploy the runner (compileApp.sh).  To use it, make sure that this file (compileApp.sh) has execution persmissions by running:
@@ -27,7 +29,7 @@ This will generate a `movies` exectable file as output. Refer to the next sectio
 
 ### Option 2.  Individual commands
 
-Refer to the contents of `compileApp.sh` for a detailed command list on how to manually compile using command line.
+Refer to the contents of `compileApp.sh` for a detailed command list on how to manually compile using command line.  Notice that this project was designed to be compiled with GNU99 standards.  Please refer to `compuleApp.sh` for details.
 
 ## Run procedure
 
