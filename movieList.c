@@ -169,12 +169,15 @@ size_t getListSize(struct movie *list)
   printf("Printing List\n");
   while (list != NULL)
   {
-    // printf("%s\t", list->title);
-    // printf("%d\t", list->year);
-    // printf("%s\t", list->languages);
-    // printf("%.1f\n", list->rating);
     list = list->next;
     ++listLength;
   }
   return listLength;
+}
+
+int listHasContent(struct movie *list, char *fileName)
+{
+  size_t size = getListSize(list);
+  printf(LIST_CREATION_SUCCESS, fileName, size);
+  return size;
 }

@@ -17,5 +17,6 @@ int *createUniqueMovieYearsArr(struct movie *, int *);
 void printMoviesWithHighestRatingsPerYear(struct movie *, int *, int);
 void filteMoviesByYear(struct movie *);
 void printMoviesOfCertainLanguage(struct movie *, char *language);
+int listHasContent(struct movie *, char *);
 
 #endif

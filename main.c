@@ -6,48 +6,46 @@
 
 int main(int argc, char *argv[])
 {
-  if (argc < 2)
+  if (!hasRequiredParams(argc))
   {
-    printf("%s", MISSING_FILE_PARAM_MSG);
     return EXIT_FAILURE;
   }
 
   struct movie *movieList = createMovieList(argv[1]);
-  size_t size = getListSize(movieList);
 
-  printf(LIST_CREATION_SUCCESS, argv[1], size);
+  if (!listHasContent(movieList, argv[1]))
+  {
+    return EXIT_FAILURE;
+  }
 
+  // Create array of unique movie years
   int yearSize = 0;
   int *uniqueMovieYears = createUniqueMovieYearsArr(movieList, &yearSize);
 
-  char *language = requestLanguageFromUser();
-  printMoviesOfCertainLanguage(movieList, language);
-
   // User inteface handler
-  // int option;
-  // do
-  // {
-  //   puts(USER_OPTIONS);
-  //   printf("%s", OPTION_PROMPT);
-  //   scanf("%d", &option);
-
-  //   switch (option)
-  //   {
-  //   case 1:
-  //     filteMoviesByYear(movieList);
-  //     break;
-  //   case 2:
-  //     printMoviesWithHighestRatingsPerYear(movieList, uniqueMovieYears, yearSize);
-  //     break;
-  //   case 3:
-  //     requestLanguageFromUser();
-  //     break;
-  //   case 4:
-  //     printf("%s", GOODBYE_MSG);
-  //     return EXIT_SUCCESS;
-  //     break;
-  //   default:
-  //     puts(INVALID_USER_INPUT_MSG);
-  //   }
-  // } while (TRUE);
+  char *language;
+  int option;
+  do
+  {
+    option = promptUserForOption();
+    switch (option)
+    {
+    case 1:
+      filteMoviesByYear(movieList);
+      break;
+    case 2:
+      printMoviesWithHighestRatingsPerYear(movieList, uniqueMovieYears, yearSize);
+      break;
+    case 3:
+      language = requestLanguageFromUser();
+      printMoviesOfCertainLanguage(movieList, language);
+      break;
+    case 4:
+      printf("%s", GOODBYE_MSG);
+      return EXIT_SUCCESS;
+      break;
+    default:
+      puts(INVALID_USER_INPUT_MSG);
+    }
+  } while (TRUE);
 }

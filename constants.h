@@ -19,5 +19,7 @@ char *LANGUAGE_EMPTY_RECORDS_MSG;
 char *LANGUAGE_RECORDS_MSG;
 int arrayContainsValue(int *, int, int);
 char *requestLanguageFromUser();
+int hasRequiredParams(int argc);
+int promptUserForOption();
 
 #endif
