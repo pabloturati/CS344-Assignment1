@@ -166,7 +166,6 @@ void filteMoviesByYear(struct movie *head)
 size_t getListSize(struct movie *list)
 {
   size_t listLength = 0;
-  printf("Printing List\n");
   while (list != NULL)
   {
     list = list->next;
