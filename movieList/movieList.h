@@ -12,12 +12,11 @@ struct movie
 
 struct movie *createMovieList(char *);
 struct movie *createMovieNode(char *);
-size_t getListSize(struct movie *);
 int *createUniqueMovieYearsArr(struct movie *, int *);
 void printMoviesWithHighestRatingsPerYear(struct movie *, int *, int);
-void filteMoviesByYear(struct movie *);
+void filteMoviesByYear(struct movie *, unsigned short);
 void printMoviesOfCertainLanguage(struct movie *, char *language);
-int listHasContent(struct movie *, char *);
+int movieListHasContent(struct movie *, char *);
 void freeMovieList(struct movie *);
 
 #endif

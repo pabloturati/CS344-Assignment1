@@ -1,11 +1,14 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #define TRUE 1
-#define MOVIE_YEARS 122
+#define FALSE 0
+#define MAX_MOVIE_YEARS 122
 #define MAX_LANGUAGE_LENGTH 20
+#define MIN_ARGUMENT_COUNT 2
 
 char *MISSING_FILE_PARAM_MSG;
-char *LIST_CREATION_SUCCESS;
+char *LIST_CREATION_SUCCESS_MSG;
+char *LIST_CREATION_SUCCESS_EMPTY_MSG;
 char *USER_OPTIONS;
 char *OPTION_PROMPT;
 char *INVALID_USER_INPUT_MSG;
@@ -17,9 +20,11 @@ char *TOTAL_RECORDS_FOUND_IN_YEAR;
 char *INPUT_LANGUAGE;
 char *LANGUAGE_EMPTY_RECORDS_MSG;
 char *LANGUAGE_RECORDS_MSG;
+
 int arrayContainsValue(int *, int, int);
-char *requestLanguageFromUser();
+char *promptUserForLanguage();
 int hasRequiredParams(int argc);
-int promptUserForOption();
+int promptUserForFlowOption();
+unsigned short promptUserForMovieYear();
 
 #endif

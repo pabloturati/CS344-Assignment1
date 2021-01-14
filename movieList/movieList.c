@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "movieList.h"
-#include "constants.h"
+#include "../constants/constants.h"
 
+/* 
+Creates and returns pointer to a link list with struct movie 
+objects based on each line of a cvs file input with several rows.
+Input: filepath (string)
+Output: head (struct movie *)
+*/
 struct movie *createMovieList(char *filePath)
 {
   // Opens file for reading
@@ -39,6 +45,12 @@ struct movie *createMovieList(char *filePath)
   return head;
 }
 
+/* 
+Creates and returns pointer to a struct movie object 
+objects based on a single cvs file line.
+Input: currLine (string)
+Output: head (struct movie *)
+*/
 struct movie *createMovieNode(char *currLine)
 {
   struct movie *currMovie = malloc(sizeof(struct movie));
@@ -69,12 +81,20 @@ struct movie *createMovieNode(char *currLine)
   return currMovie;
 }
 
+/* 
+Creates an integer array with unique movie years.
+Input: list head (struct movie *), size (int passed by reference)
+Output: returns uniqueYearArr (int array *), writes on 'size'
+*/
 int *createUniqueMovieYearsArr(struct movie *head, int *size)
 {
-  int *uniqueYearArr = (int *)calloc(MOVIE_YEARS, sizeof(int));
+  // Pointer to set (no duplicate values)
+  int *uniqueYearArr = (int *)calloc(MAX_MOVIE_YEARS, sizeof(int));
   struct movie *curr = head;
+  // Traverse list to find years that are not in the set
   while (curr != NULL)
   {
+    // If not already in the set, add it. Else continue.
     if (!arrayContainsValue(uniqueYearArr, *size, curr->year))
     {
       uniqueYearArr[*size] = curr->year;
@@ -82,9 +102,17 @@ int *createUniqueMovieYearsArr(struct movie *head, int *size)
     }
     curr = curr->next;
   }
+  // Resizes array to content to reclaims unused memory
+  uniqueYearArr = (int *)realloc(uniqueYearArr, *size * sizeof(int));
   return uniqueYearArr;
 }
 
+/* 
+Prints highest rated movie to std out (screen) in format:
+YEAR RATING (single decimal floating point) TITLE
+Input: list head (struct movie *), uniqueYears(array of int), arrSize (int)
+Output: (void) prints to stdout (screen).
+*/
 void printMoviesWithHighestRatingsPerYear(struct movie *head, int *uniqueYears, int arrSize)
 {
   for (int i = 0; i < arrSize; i++)
@@ -111,6 +139,12 @@ void printMoviesWithHighestRatingsPerYear(struct movie *head, int *uniqueYears, 
   printf("\n");
 }
 
+/* 
+Prints to stdout (screen) movies that contain (exact match) the selected language. 
+Filter operation is done by substring match.  Print format is:  YEAR TITLE
+Input: list head (struct movie *), language (string)
+Output: (void) prints to stdout (screen).
+*/
 void printMoviesOfCertainLanguage(struct movie *head, char *language)
 {
   struct movie *curr = head;
@@ -135,13 +169,13 @@ void printMoviesOfCertainLanguage(struct movie *head, char *language)
   }
 }
 
-void filteMoviesByYear(struct movie *head)
+/* 
+Filter operation is done by substring match.  Print format is:  YEAR TITLE
+Input: list head (struct movie *), year (string)
+Output: (void) prints to stdout (screen).
+*/
+void filteMoviesByYear(struct movie *head, unsigned short year)
 {
-  unsigned short year;
-  printf("%s", INPUT_YEAR_MSG);
-  scanf("%hu", &year);
-  printf(SELECTED_YEAR_MSG, year);
-
   size_t count = 0;
   struct movie *curr = head;
   while (curr != NULL)
@@ -163,33 +197,48 @@ void filteMoviesByYear(struct movie *head)
   }
 }
 
+/* 
+Method that releases memory allocated for the movie linked list
+Input: list head (struct movie *)
+Output: (void)
+*/
 void freeMovieList(struct movie *list)
 {
   struct movie *curr = list;
   while (curr != NULL)
   {
     struct movie *next = curr->next;
+    //Releases movie fields
     free(curr->title);
     free(curr->languages);
+    //Releases movie object
     free(curr);
     curr = next;
   }
 }
 
-size_t getListSize(struct movie *list)
+/* 
+Returns size in integer number of a linked list
+Input: list head (struct movie *)
+Output: listLenght (integer). 0 for empty.
+*/
+int movieListHasContent(struct movie *list, char *fileName)
 {
   size_t listLength = 0;
+  //Counts list objects until last one
   while (list != NULL)
   {
     list = list->next;
     ++listLength;
   }
+  //Print result to screen
+  if (listLength > 0)
+  {
+    printf(LIST_CREATION_SUCCESS_MSG, fileName, listLength);
+  }
+  else
+  {
+    printf(LIST_CREATION_SUCCESS_EMPTY_MSG, fileName, listLength);
+  }
   return listLength;
-}
-
-int listHasContent(struct movie *list, char *fileName)
-{
-  size_t size = getListSize(list);
-  printf(LIST_CREATION_SUCCESS, fileName, size);
-  return size;
 }

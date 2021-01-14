@@ -1,8 +1,7 @@
 # CS344-Assignment1
-CS344-Assignment1 Movie List reader in C
-Author: Pablo Turati - turatip@oregonstate.edu
-Licence: MIT. 
-Refer to `LICENSE` for details.
+CS344-Assignment1 Movie List reader in C\
+Author: Pablo Turati - turatip@oregonstate.edu\
+Licence: MIT. Refer to `LICENSE` for details.
 
 ## Project Description
 
@@ -37,15 +36,36 @@ Once the application executable has been created `movies`. It can be run as foll
 `$ ./movies <filename.csv>`
 
 An example where the file name is: `movies_sample_1.csv` would be:
+
 `$ ./movies movies_sample_1.csv`
 
 Where movies_sample_file must be a comma-separated file (.csv) with the following structure and application data type interpretation:
 
- - Movie Title :: string
- - Year :: integer number
- - Languages :: string 
- - Rating Value :: floating point number
+ - **Movie Title** :: string
+ - **Year** :: integer number
+ - **Languages** :: string 
+ - **Rating Value** :: floating point number
 
- ## Additional resources
+First line of the input file is expected to contain headers, therefore data reading starts from second line.
+
+## Additional resources
+
+## Project File structure
+```
+root
+├── .gitignore
+├── compileApp.sh
+├── main.c
+├── LICENSE
+├── README.md
+├── constants
+│   ├── constants.c
+│   └── constants.h
+└── movieList
+    ├── movieList.c
+    └── movieList.h
+```
+
+## Version control
 
  Link to the repository is available at [here](https://github.com/pabloturati/CS344-Assignment1).  However, due to this being an Oregon State University assignment, it will remain private and public access will become available after April, 2021.

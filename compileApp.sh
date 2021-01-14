@@ -4,8 +4,8 @@
 rm -f movies constants.o movieList.o lib_movies.a
 
 # Create precompiled objects
-gcc --std=c99 -c constants.c
-gcc --std=c99 -c movieList.c
+gcc --std=c99 -c constants/constants.c
+gcc --std=c99 -c movieList/movieList.c
 
 # Creates external file archive
 ar -r lib_movies.a constants.o movieList.o
@@ -15,3 +15,5 @@ gcc --std=c99 -o movies main.c lib_movies.a
 
 # Removes temporary files
 rm -f constants.o movieList.o lib_movies.a
+
+./movies movies_sample_1.csv
