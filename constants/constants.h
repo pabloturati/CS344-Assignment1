@@ -22,7 +22,7 @@ char *LANGUAGE_EMPTY_RECORDS_MSG;
 char *LANGUAGE_RECORDS_MSG;
 
 int arrayContainsValue(int *, int, int);
-char *promptUserForLanguage();
+void *promptUserForLanguage();
 int hasRequiredParams(int argc);
 int promptUserForFlowOption();
 unsigned short promptUserForMovieYear();

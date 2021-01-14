@@ -45,8 +45,9 @@ int main(int argc, char *argv[])
       break;
     // 3 - Filter movies by exact mach of language
     case 3:
-      language = promptUserForLanguage();
+      language = promptUserForLanguage(&language);
       printMoviesOfCertainLanguage(movieList, language);
+      free(language);
       break;
     // 4 - Release memory and exit program with code 0 (success)
     case 4:

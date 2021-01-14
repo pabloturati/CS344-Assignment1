@@ -61,9 +61,9 @@ int hasRequiredParams(int argc)
 /* 
 Prompts user for language. To be used to filter movies by.
 Input: None
-Output: language (string)
+Output: None. Writes on language (passed by ref.)
 */
-char *promptUserForLanguage()
+void *promptUserForLanguage()
 {
   char *language = (char *)calloc(MAX_LANGUAGE_LENGTH + 1, sizeof(char));
   printf("%s", INPUT_LANGUAGE);
